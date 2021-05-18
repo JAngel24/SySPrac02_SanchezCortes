@@ -1,0 +1,594 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>P02 SE&Ntilde;ALES EN TIEMPO CONTINUO</title><meta name="generator" content="MATLAB 9.9"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-11-30"><meta name="DC.source" content="SySPrac02SanchezCortes.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1><b>P02 SE&Ntilde;ALES EN TIEMPO CONTINUO</b></h1><!--introduction--><p><b>Se&ntilde;ales y Sistemas 2TV1</b></p><p><i><b>Casta&ntilde;eda Iba&ntilde;ez Oscar</b></i></p><p><i><b>Marulanda Villasmil Mar&iacute;a Alejandra</b></i></p><p><i><b>S&aacute;nchez Cort&eacute;s Jos&eacute; &Aacute;ngel</b></i></p><p><i><b>Torres Lira Josu&eacute; Daniel</b></i></p><p><i><b>Vasquez Pineda Jose Antonio</b></i></p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1"><b>1. Reproducir la secci&oacute;n 1.11 del libro de Lathi (versi&oacute;n de clase).</b></a></li><li><a href="#26"><b>2. Resuelve el problema 1.2-2 usando las herramientas del paso anterior.</b></a></li><li><a href="#32"><b>3. Resuelve el problema 1.11-1, los ejes deben mostrarse en el origen adem&aacute;s de la edici&oacute;n de tu preferencia.</b></a></li><li><a href="#33"><b>4. Construye la grafica de <img src="SySPrac02SanchezCortes_eq05183982691321658786.png" alt="$$x(t) = \sum_{k=1}^{10} cos(2\pi k t)$"></b></a></li><li><a href="#34">Python: <a href="https://colab.research.google.com/drive/1hi_Q55Z7tGSBMxsj_cEfzWzfnoM5dBKR#scrollTo=ZFLZF7XzZctTa">https://colab.research.google.com/drive/1hi_Q55Z7tGSBMxsj_cEfzWzfnoM5dBKR#scrollTo=ZFLZF7XzZctTa</a></a></li><li><a href="#37"><b>5. Resuelve el problema 1.11-3, agrega como inciso (e) la gr&aacute;fica de <img src="SySPrac02SanchezCortes_eq14833433867325483769.png" alt="$x(t)$"> para <img src="SySPrac02SanchezCortes_eq05462134584429915192.png" alt="$t\in[-10,10]$"></b></a></li></ul></div><h2 id="1"><b>1. Reproducir la secci&oacute;n 1.11 del libro de Lathi (versi&oacute;n de clase).</b></h2><p><b>1.11 MATLAB: WORKING WITH FUNCTIONS</b></p><p>Working with functions is fundamental to signals and systems applications. MATLAB provides several methods of defining and evaluating functions. An understanding and proficient use of these methods are therefore necessary and beneficial.</p><p><b>1.11-1 Anonymous Functions</b> Many simple functions are most conveniently represented by using MATLAB anonymous functions. An anonymous function provides a symbolic representation of a function defined in terms of MATLAB operators, functions, or other anonymous functions. For example, consider defining the exponentially damped sinusoid f(t) = <img src="SySPrac02SanchezCortes_eq05990266188300375305.png" alt="$$e^{t}$"> cos(2&#960;t).</p><pre class="codeinput">f = @(t) exp(-t).*cos(2*pi*t);
+</pre><p>In this context, the @ symbol identifies the expression as an anonymous function, which is assigned a name of f. Parentheses following the @ symbol are used to identify the function&#8217;s independent variables (input arguments), which in this case is the single time variable t. Input arguments, such as t, are local to the anonymous function and are not related to any workspace variables with the same names. Once defined, f(t) can be evaluated simply by passing the input values of interest. For example,</p><pre class="codeinput">t = 0; f(t)
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><p>evaluates f(t) at t = 0, confirming the expected result of unity. The same result is obtained by passing t = 0 directly.</p><pre class="codeinput">f(0)
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><p>Vector inputs allow the evaluation of multiple values simultaneously. Consider the task of plotting f(t) over the interval (&#8722;2 &#8804; t &#8804; 2). Gross function behavior is clear: f(t) should oscillate four times with a decaying envelope. Since accurate hand sketches are cumbersome, MATLAB-generated plots are an attractive alternative. As the following example illustrates, care must be taken to ensure reliable results. Suppose vector t is chosen to include only the integers contained in (&#8722;2 &#8804; t &#8804; 2), namely, [&#8722;2,&#8722;1, 0, 1, 2].</p><pre class="codeinput">t = (-2:2);
+</pre><p>This vector input is evaluated to form a vector output.</p><pre class="codeinput">f(t)
+</pre><pre class="codeoutput">
+ans =
+
+    7.3891    2.7183    1.0000    0.3679    0.1353
+
+</pre><p>The plot command graphs the result, which is shown in Fig. 1.46.</p><pre class="codeinput">plot(t,f(t));
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'f(t)'</span>); grid;
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_01.png" alt=""> <p><b>Figure 1.46</b> f(t) = <img src="SySPrac02SanchezCortes_eq09127540405610420160.png" alt="$$ e^{-t}$"> cos(2&#960;t) for t = (-2:2).</p><p>Grid lines, added by using the grid command, aid feature identification. Unfortunately, the plot does not illustrate the expected oscillatory behavior. More points are required to adequately represent f(t). The question, then, is how many points is enough? <img src="SySPrac02SanchezCortes_eq14481683609053017672.png" alt="$$ Q$">  If too few points are chosen, information is lost. If too many points are chosen, memory and time are wasted. A balance is needed. For oscillatory functions, plotting 20 to 200 points per oscillation is normally adequate. For the present case, t is chosen to give 100 points per oscillation.</p><pre class="codeinput"> t = (-2:0.01:2);
+plot(t,f(t));
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'f(t)'</span>); grid;
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_02.png" alt=""> <p><b>Figure 1.47</b> f(t) = <img src="SySPrac02SanchezCortes_eq09127540405610420160.png" alt="$$ e^{-t}$"> cos(2&#960;t) for t = (-2:0.01:2).</p><p>The result, shown in <b>Fig. 1.47</b>, is an accurate depiction of f(t).</p><p>_____________________________________________________________________</p><p><img src="SySPrac02SanchezCortes_eq14481683609053017672.png" alt="$$ Q$"> Sampling theory, presented later, formally addresses important aspects of this question.</p><p>_____________________________________________________________________</p><p><b>1.11-2 Relational Operators and the Unit Step Function</b></p><p>The unit step function u(t) arises naturally in many practical situations. For example, a unit step can model the act of turning on a system. With the help of relational operators, anonymous functions can represent the unit step function. In MATLAB, a relational operator compares two items. If the comparison is true, a logical true (1) is returned. If the comparison is false, a logical false (0) is returned. Sometimes called indicator functions, relational operators indicates whether a condition is true. Six relational operators are available: &lt;, &gt;, &lt;=, &gt;=, ==, and <img src="SySPrac02SanchezCortes_eq00286504614711506480.png" alt="$$\sim$"> =. The unit step function is readily defined using the &gt;= relational operator.</p><pre class="codeinput">u = @(t) 1.0.*(t&gt;=0);
+</pre><p>Any function with a jump discontinuity, such as the unit step, is difficult to plot. Consider plotting u(t) by using t = (-2:2).</p><pre class="codeinput">t = (-2:2); plot(t,u(t));
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'u(t)'</span>);
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_03.png" alt=""> <p><b>Figure 1.48</b> u(t) for t = (-2:2).</p><p>Two significant problems are apparent in the resulting plot, shown in Fig. 1.48. First, MATLAB automatically scales plot axes to tightly bound the data. In this case, this normally desirable feature obscures most of the plot. Second, MATLAB connects plot data with lines, making a true jump discontinuity difficult to achieve. The coarse resolution of vector t emphasizes the effect by showing an erroneous sloping line between t = &#8722;1 and t = 0. The first problem is corrected by vertically enlarging the bounding box with the axis command. The second problem is reduced, but not eliminated, by adding points to vector t.</p><pre class="codeinput">t = (-2:0.01:2); plot(t,u(t));
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'u(t)'</span>);
+axis([-2 2 -0.1 1.1]);
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_04.png" alt=""> <p><b>Figure 1.49</b> u(t) for t = (-2:0.01:2) with axis modification.</p><p>The four-element vector argument of axis specifies x axis minimum, x axis maximum, y axis minimum, and y axis maximum, respectively. The improved results are shown in Fig. 1.49. Relational operators can be combined using logical AND, logical OR, and logical negation: &amp;, <tt>, and <img src="SySPrac02SanchezCortes_eq00286504614711506480.png" alt="$$\sim$"> , respectively. For example, (t&gt;0)&amp;(t&lt;1) and <img src="SySPrac02SanchezCortes_eq00286504614711506480.png" alt="$$\sim$"> ((t&lt;=0)</tt>(t&gt;=1)) both test if 0 &lt; t &lt; 1. To demonstrate, consider defining and plotting the unit pulse p(t) = u(t) &#8722; u(t &#8722; 1), as shown in Fig. 1.50: Since anonymous functions can be constructed using other anonymous functions, we could have used our previously defined unit step anonymous function to define p(t) as p = @(t) u(t)-u(t-1);.</p><pre class="codeinput">p = @(t) 1.0.*((t&gt;=0)&amp;(t&lt;1));
+t = (-1:0.01:2); plot(t,p(t));
+xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'p(t) = u(t)-u(t-1)'</span>);
+axis([-1 2 -.1 1.1]);
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_05.png" alt=""> <p><b>Figure 1.50</b> p(t) = u(t)&#8722;u(t &#8722;1) over (&#8722;1 &#8804; t &#8804; 2).</p><p>For scalar operands, MATLAB also supports two short-circuit logical constructs. A short-circuit logical AND is performed by using &amp;&amp;, and a short-circuit logical OR is performed by using . Short-circuit logical operators are often more efficient than traditional logical operators because they test the second portion of the expression only when necessary. That is, when scalar expression A is found false in (A&amp;&amp;B), scalar expression B is not evaluated, since a false result is already guaranteed. Similarly, scalar expression B is not evaluated when scalar expression A is found true in (A||B), since a true result is already guaranteed.</p><p><b>1.11-3 Visualizing Operations on the Independent Variable</b></p><p>Two operations on a function&#8217;s independent variable are commonly encountered: shifting and scaling. Anonymous functions are well suited to investigate both operations. Consider g(t) = f(t)u(t) = <img src="SySPrac02SanchezCortes_eq09127540405610420160.png" alt="$$ e^{-t}$"> cos(2&#960;t)u(t), a causal version of f(t). MATLAB easily multiplies anonymous functions. Thus, we create g(t) by multiplying our anonymous functions for f(t) and <img src="SySPrac02SanchezCortes_eq15173805346030298546.png" alt="$$ u(t).^Q$"></p><pre class="codeinput">g = @(t) f(t).*u(t);
+</pre><p>A combined shifting and scaling operation is represented by g(at + b), where a and b are arbitrary real constants. As an example, consider plotting g(2t +1) over (&#8722;2 &#8804; t &#8804; 2). With a = 2, the function is compressed by a factor of 2, resulting in twice the oscillations per unit t. Adding the condition b &gt; 0 shifts the waveform to the left. Given anonymous function g, an accurate plot is nearly trivial to obtain. Figure 1.51 confirms the expected waveform compression and left shift. As a final check, realize that function g(&middot;) turns on when the input argument is zero. Therefore, g(2t + 1) should turn on when 2t +1 = 0 or at t = &#8722;0.5, a fact again confirmed by Fig. 1.51.</p><pre class="codeinput">t = (-2:0.01:2);
+plot(t,g(2*t+1)); xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'g(2t+1)'</span>); grid;
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_06.png" alt=""> <p><b>Figure 1.51</b> g(2t +1) over (&#8722;2 &#8804; t &#8804; 2)</p><p>_____________________________________________________________________</p><p><img src="SySPrac02SanchezCortes_eq14481683609053017672.png" alt="$$ Q$"> Although we define g in terms of f and u, the function g will not change if we later change either f or u unless we subsequently redefine g as well.</p><p>_____________________________________________________________________</p><p>Next, consider plotting g(&#8722;t + 1) over (&#8722;2 &#8804; t &#8804; 2). Since a &lt; 0, the waveform will be reflected. Adding the condition b &gt; 0 shifts the final waveform to the right.</p><pre class="codeinput">t = (-2:0.01:2);
+plot(t,g(-t+1)); xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'g(-t+1)'</span>); grid;
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_07.png" alt=""> <p><b>Figure 1.52</b> g(&#8722;t +1) over (&#8722;2 &#8804; t &#8804; 2). Figure 1.52 confirms both the reflection and the right shift. Up to this point, Figs. 1.51 and 1.52 could be reasonably sketched by hand. Consider plotting the more complicated function h(t) = g(2t + 1) + g(&#8722;t + 1) over (&#8722;2 &#8804; t &#8804; 2) (Fig. 1.53); an accurate hand sketch would be quite difficult. With MATLAB, the work is much less burdensome.</p><pre class="codeinput">t = (-2:0.01:2);
+plot(t,g(2*t+1)+g(-t+1)); xlabel(<span class="string">'t'</span>); ylabel(<span class="string">'g(2*t+1)+g(-t+1)'</span>); grid;
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_08.png" alt=""> <p><b>Figure 1.53</b> h(t) = g(2t +1)+g(&#8722;t +1) over (&#8722;2 &#8804; t &#8804; 2)</p><p><b>1.11-4 Numerical Integration and Estimating Signal Energy</b> Interesting signals often have nontrivial mathematical representations. Computing signal energy, which involves integrating the square of these expressions, can be a daunting task. Fortunately, many difficult integrals can be accurately estimated by means of numerical integration techniques. Even if the integration appears simple, numerical integration provides a good way to verify analytical results. To start, consider the simple signal x(t) = <img src="SySPrac02SanchezCortes_eq09127540405610420160.png" alt="$$ e^{-t}$">(u(t)&#8722;u(t&#8722;1)). The energy of x(t) is expressed <img src="SySPrac02SanchezCortes_eq17259346926725825957.png" alt="$$ E_x = \int_{-\infty}^{\infty} x(t)^{2}dt = \int_{0}^{1} e^{-2} dt$">. Integrating yields <img src="SySPrac02SanchezCortes_eq17144929488137429799.png" alt="$$E_x$"> = 0.5 (1&#8722; <img src="SySPrac02SanchezCortes_eq14653289101398231635.png" alt="$$ e^{-2}$">) <img src="SySPrac02SanchezCortes_eq17006578129366973571.png" alt="$$\approx$"> 0.4323. The energy integral can also be evaluated numerically. Figure 1.27 helps illustrate the simple method of rectangular approximation: evaluate the integrand at points uniformly separated by <img src="SySPrac02SanchezCortes_eq10022324403506524897.png" alt="$$\triangle$"> t, multiply each by <img src="SySPrac02SanchezCortes_eq10022324403506524897.png" alt="$$\triangle$"> t to compute rectangle areas, and then sum over all rectangles. First, we create function x(t).</p><pre class="codeinput">x = @(t) exp(-t).*((t&gt;=0)&amp;(t&lt;1));
+</pre><p>With <img src="SySPrac02SanchezCortes_eq10022324403506524897.png" alt="$$\triangle$"> t = 0.01, a suitable time vector is created.</p><pre class="codeinput">t = (0:0.01:1);
+</pre><p>The final result is computed by using the sum command.</p><pre class="codeinput">E_x = sum(x(t).*x(t)*0.01)
+</pre><pre class="codeoutput">
+E_x =
+
+    0.4367
+
+</pre><p>The result is not perfect, but at 1% relative error it is close. By reducing <img src="SySPrac02SanchezCortes_eq18008802965930388929.png" alt="$$ \triangle$"> t, the approximation is improved. For example, <img src="SySPrac02SanchezCortes_eq18008802965930388929.png" alt="$$ \triangle$"> t = 0.001 yields <img src="SySPrac02SanchezCortes_eq11982575628408397508.png" alt="$$ E_x$"> = 0.4328, or 0.1% relative error. Although simple to visualize, rectangular approximation is not the best numerical integration technique. The MATLAB function quad implements a better numerical integration technique called recursive adaptive Simpson quadrature. <img src="SySPrac02SanchezCortes_eq16178203564688030664.png" alt="$$Q$"> To operate, quad requires a function describing the integrand, the lower limit of integration, and the upper limit of integration. Notice that no <img src="SySPrac02SanchezCortes_eq10022324403506524897.png" alt="$$\triangle$"> t needs to be specified. To use quad to estimate <img src="SySPrac02SanchezCortes_eq11982575628408397508.png" alt="$$ E_x$">, the integrand must first be described.</p><pre class="codeinput">x_squared = @(t) x(t).*x(t);
+</pre><p>Estimating <img src="SySPrac02SanchezCortes_eq17144929488137429799.png" alt="$$E_x$"> immediately follows.</p><pre class="codeinput">E_x = quad(x_squared,0,1)
+</pre><pre class="codeoutput">
+E_x =
+
+    0.4323
+
+</pre><p>In this case, the relative error is &#8722;0.0026%.</p><p>The same techniques can be used to estimate the energy of more complex signals. Consider g(t), defined previously. Energy is expressed as <img src="SySPrac02SanchezCortes_eq13536837357522244440.png" alt="$$ E_g = \int_{0}^{\infty} e^{-2t}cos(2 \pi t)dt$">. A closed-form solution exists, but it takes some effort. MATLAB provides an answer more quickly</p><pre class="codeinput">g_squared = @(t) g(t).*g(t);
+</pre><p>_____________________________________________________________________</p><p><img src="SySPrac02SanchezCortes_eq14481683609053017672.png" alt="$$ Q$"> A comprehensive treatment of numerical integration is outside the scope of this text. Details of this particular method are not important for the current discussion; it is sufficient to say that it is better than the rectangular approximation.</p><p>_____________________________________________________________________</p><p>Although the upper limit of integration is infinity, the exponentially decaying envelope ensures g(t) is effectively zero well before t = 100. Thus, an upper limit of t = 100 is used along with <img src="SySPrac02SanchezCortes_eq18008802965930388929.png" alt="$$ \triangle$"> t = 0.001.</p><pre class="codeinput">t = (0:0.001:100);
+E_g = sum(g_squared(t)*0.001)
+<span class="comment">%</span>
+</pre><pre class="codeoutput">
+E_g =
+
+    0.2567
+
+</pre><h2 id="26"><b>2. Resuelve el problema 1.2-2 usando las herramientas del paso anterior.</b></h2><pre class="codeinput">u = @(t) 1.0.*(t&gt;=0);
+g= @(t) -t.*(u(t+4)-u(t))+((t/2).*(u(t)-u(t-2)));
+t= -8:0.01:8;
+plot(t,g(t));
+title(<span class="string">'x(t)'</span>)
+plano = gca;
+plano.XAxisLocation = <span class="string">"origin"</span>;
+plano.YAxisLocation = <span class="string">"origin"</span>;
+plano.Box = <span class="string">"off"</span>;
+grid <span class="string">on</span>
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_09.png" alt=""> <pre class="codeinput">plot (t,g(t-4))
+title(<span class="string">'x(t-4)'</span>)
+plano = gca;
+plano.XAxisLocation = <span class="string">"origin"</span>;
+plano.YAxisLocation = <span class="string">"origin"</span>;
+plano.Box = <span class="string">"off"</span>;
+grid <span class="string">on</span>
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_10.png" alt=""> <pre class="codeinput">plot (t,g(t/1.5))
+title(<span class="string">'x(t/1.5)'</span>)
+plano = gca;
+plano.XAxisLocation = <span class="string">"origin"</span>;
+plano.YAxisLocation = <span class="string">"origin"</span>;
+plano.Box = <span class="string">"off"</span>;
+grid <span class="string">on</span>
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_11.png" alt=""> <pre class="codeinput">plot (t,g(-t))
+title(<span class="string">'x(-t)'</span>)
+plano = gca;
+plano.XAxisLocation = <span class="string">"origin"</span>;
+plano.YAxisLocation = <span class="string">"origin"</span>;
+plano.Box = <span class="string">"off"</span>;
+grid <span class="string">on</span>
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_12.png" alt=""> <pre class="codeinput">plot (t,g((2*t)-4))
+title(<span class="string">'x(2t-4)'</span>)
+plano = gca;
+plano.XAxisLocation = <span class="string">"origin"</span>;
+plano.YAxisLocation = <span class="string">"origin"</span>;
+plano.Box = <span class="string">"off"</span>;
+grid <span class="string">on</span>
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_13.png" alt=""> <pre class="codeinput">plot (t,g(2-t))
+title(<span class="string">'x(2-t)'</span>)
+plano = gca;
+plano.XAxisLocation = <span class="string">"origin"</span>;
+plano.YAxisLocation = <span class="string">"origin"</span>;
+plano.Box = <span class="string">"off"</span>;
+grid <span class="string">on</span>
+<span class="comment">%</span>
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_14.png" alt=""> <h2 id="32"><b>3. Resuelve el problema 1.11-1, los ejes deben mostrarse en el origen adem&aacute;s de la edici&oacute;n de tu preferencia.</b></h2><pre class="codeinput">u = @(t) 1.0.*(t&gt;=0);
+g = @(t) 0.5.*((2.^(-t).*u(t-pi)-(2.^(t).*u(-t-pi))));
+t=-5:0.01:5;
+plot(t,g(t));
+plano = gca;
+plano.XAxisLocation = <span class="string">"origin"</span>;
+plano.YAxisLocation = <span class="string">"origin"</span>;
+plano.Box = <span class="string">"off"</span>;
+xlabel(<span class="string">'t'</span>);ylabel(<span class="string">'g(t)'</span>);
+grid;
+<span class="comment">%</span>
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_15.png" alt=""> <h2 id="33"><b>4. Construye la grafica de <img src="SySPrac02SanchezCortes_eq05183982691321658786.png" alt="$$x(t) = \sum_{k=1}^{10} cos(2\pi k t)$"></b></h2><h2 id="34">Python: <a href="https://colab.research.google.com/drive/1hi_Q55Z7tGSBMxsj_cEfzWzfnoM5dBKR#scrollTo=ZFLZF7XzZctTa">https://colab.research.google.com/drive/1hi_Q55Z7tGSBMxsj_cEfzWzfnoM5dBKR#scrollTo=ZFLZF7XzZctTa</a></h2><pre class="codeinput">M = 250;
+t = -2:4/(M-1):2;
+y = zeros(1,M);
+N = 10;
+<span class="keyword">for</span> k = 1:N
+ y = y+ cos(pi*k*t);
+<span class="keyword">end</span>
+plot(t,y)
+plano = gca;
+plano.XAxisLocation = <span class="string">"origin"</span>;
+plano.YAxisLocation = <span class="string">"origin"</span>;
+plano.Box = <span class="string">"off"</span>;
+a= title(<span class="string">'x(t)'</span>);
+set(a,<span class="string">'fontsize'</span>,14);
+a= xlabel(<span class="string">'x'</span>);
+set(a,<span class="string">'fontsize'</span>,20);
+a = ylabel(<span class="string">'y'</span>);
+set(a,<span class="string">'fontsize'</span>,20);
+a = zlabel(<span class="string">'z'</span>);
+set(a,<span class="string">'fontsize'</span>,20);
+grid;
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_16.png" alt=""> <p>Gr&aacute;fica Python</p><p><img vspace="5" hspace="5" src="mifigura.PNG" alt=""> </p><h2 id="37"><b>5. Resuelve el problema 1.11-3, agrega como inciso (e) la gr&aacute;fica de <img src="SySPrac02SanchezCortes_eq14833433867325483769.png" alt="$x(t)$"> para <img src="SySPrac02SanchezCortes_eq05462134584429915192.png" alt="$t\in[-10,10]$"></b></h2><p><b>1.11-3</b></p><pre class="codeinput">u = @(t) 1.0.*(t&gt;=0);
+x= @(t) exp(t.*(1+(i*2*pi)).*u(-t));
+y= @(t) real(2.*x((-5-t)./2));
+</pre><p><b>a)</b></p><pre class="codeinput">a=0.5;
+t=-10:0.01:10;
+plot(real(x(t)),imag(x(t.*a)));
+title(<span class="string">'x(t) con a=0.5'</span>);
+xlabel(<span class="string">'Re'</span>);ylabel(<span class="string">'Im'</span>);
+a=1;
+plot(real(x(t)),imag(x(t.*a)));
+title(<span class="string">'x(t) con a=1'</span>);
+xlabel(<span class="string">'Re'</span>);ylabel(<span class="string">'Im'</span>);
+a=2;
+plot(real(x(t)),imag(x(t.*a)));
+title(<span class="string">'x(t) con a=2'</span>);
+xlabel(<span class="string">'Re'</span>);ylabel(<span class="string">'Im'</span>);
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_17.png" alt=""> <p>The shape of the figure changes a lot when you modiffy the scale of a), perhabs, the scale in the factor a) is very important in this case.</p><p><b>b)</b>???</p><pre class="codeinput">plot(t, real(y(t)));
+xlabel(<span class="string">'t'</span>);ylabel(<span class="string">'y(t)'</span>);
+</pre><img vspace="5" hspace="5" src="SySPrac02SanchezCortes_18.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% *P02 SEÑALES EN TIEMPO CONTINUO*
+% *Señales y Sistemas 2TV1*
+%
+% _*Castañeda Ibañez Oscar*_ 
+%
+% _*Marulanda Villasmil María Alejandra*_
+%
+% _*Sánchez Cortés José Ángel*_
+%
+% _*Torres Lira Josué Daniel*_
+%
+% _*Vasquez Pineda Jose Antonio*_
+% 
+%% *1. Reproducir la sección 1.11 del libro de Lathi (versión de clase).*
+% *1.11 MATLAB: WORKING WITH FUNCTIONS*
+%
+% Working with functions is fundamental to signals and systems applications. MATLAB provides
+% several methods of defining and evaluating functions. An understanding and proficient use of these
+% methods are therefore necessary and beneficial.
+%
+% *1.11-1 Anonymous Functions*
+% Many simple functions are most conveniently represented by using MATLAB anonymous
+% functions. An anonymous function provides a symbolic representation of a function defined in
+% terms of MATLAB operators, functions, or other anonymous functions. For example, consider
+% defining the exponentially damped sinusoid f(t) = $$e^{t}$ cos(2πt).
+f = @(t) exp(-t).*cos(2*pi*t);
+%%
+% In this context, the @ symbol identifies the expression as an anonymous function, which is assigned
+% a name of f. Parentheses following the @ symbol are used to identify the function’s independent
+% variables (input arguments), which in this case is the single time variable t. Input arguments, such
+% as t, are local to the anonymous function and are not related to any workspace variables with the
+% same names.
+% Once defined, f(t) can be evaluated simply by passing the input values of interest. For
+% example,
+t = 0; f(t)
+%% 
+% evaluates f(t) at t = 0, confirming the expected result of unity. The same result is obtained by
+% passing t = 0 directly.
+f(0)
+%%
+% Vector inputs allow the evaluation of multiple values simultaneously. Consider the task
+% of plotting f(t) over the interval (−2 ≤ t ≤ 2). Gross function behavior is clear: f(t) should
+% oscillate four times with a decaying envelope. Since accurate hand sketches are cumbersome,
+% MATLAB-generated plots are an attractive alternative. As the following example illustrates, care
+% must be taken to ensure reliable results.
+% Suppose vector t is chosen to include only the integers contained in (−2 ≤ t ≤ 2), namely,
+% [−2,−1, 0, 1, 2].
+t = (-2:2);
+%%
+% This vector input is evaluated to form a vector output.
+f(t)
+%%
+% The plot command graphs the result, which is shown in Fig. 1.46.
+plot(t,f(t));
+xlabel('t'); ylabel('f(t)'); grid; 
+%%
+% *Figure 1.46* f(t) = $$ e^{-t}$ cos(2πt) for t = (-2:2).
+%%
+% Grid lines, added by using the grid command, aid feature identification. Unfortunately, the
+% plot does not illustrate the expected oscillatory behavior. More points are required to adequately
+% represent f(t).
+% The question, then, is how many points is enough? $$ Q$  If too few points are chosen, information
+% is lost. If too many points are chosen, memory and time are wasted. A balance is needed. For
+% oscillatory functions, plotting 20 to 200 points per oscillation is normally adequate. For the present
+% case, t is chosen to give 100 points per oscillation.
+ t = (-2:0.01:2);
+plot(t,f(t));
+xlabel('t'); ylabel('f(t)'); grid;
+%%
+% *Figure 1.47* f(t) = $$ e^{-t}$ cos(2πt) for t = (-2:0.01:2).
+% 
+% The result, shown in *Fig. 1.47*, is an accurate depiction of f(t).
+%
+% _______________________________________________________________________
+% 
+% $$ Q$ Sampling theory, presented later, formally addresses important aspects of this question.
+%
+% _______________________________________________________________________
+%
+%%
+% *1.11-2 Relational Operators and the Unit Step Function*
+%
+% The unit step function u(t) arises naturally in many practical situations. For example, a unit step can
+% model the act of turning on a system. With the help of relational operators, anonymous functions
+% can represent the unit step function.
+% In MATLAB, a relational operator compares two items. If the comparison is true, a logical true
+% (1) is returned. If the comparison is false, a logical false (0) is returned. Sometimes called indicator
+% functions, relational operators indicates whether a condition is true. Six relational operators are
+% available: <, >, <=, >=, ==, and $$\sim$ =.
+% The unit step function is readily defined using the >= relational operator.
+u = @(t) 1.0.*(t>=0);
+%%
+% Any function with a jump discontinuity, such as the unit step, is difficult to plot. Consider plotting
+% u(t) by using t = (-2:2).
+t = (-2:2); plot(t,u(t));
+xlabel('t'); ylabel('u(t)');
+%%
+% *Figure 1.48* u(t) for t = (-2:2).
+%
+% Two significant problems are apparent in the resulting plot, shown in Fig. 1.48. First,
+% MATLAB automatically scales plot axes to tightly bound the data. In this case, this normally
+% desirable feature obscures most of the plot. Second, MATLAB connects plot data with lines,
+% making a true jump discontinuity difficult to achieve. The coarse resolution of vector t emphasizes
+% the effect by showing an erroneous sloping line between t = −1 and t = 0.
+% The first problem is corrected by vertically enlarging the bounding box with the axis
+% command. The second problem is reduced, but not eliminated, by adding points to vector t. 
+t = (-2:0.01:2); plot(t,u(t));
+xlabel('t'); ylabel('u(t)');
+axis([-2 2 -0.1 1.1]);
+%%
+% *Figure 1.49* u(t) for t = (-2:0.01:2) with axis modification.
+%%
+% The four-element vector argument of axis specifies x axis minimum, x axis maximum, y axis
+% minimum, and y axis maximum, respectively. The improved results are shown in Fig. 1.49.
+% Relational operators can be combined using logical AND, logical OR, and logical negation: &,
+% |, and $$\sim$ , respectively. For example, (t>0)&(t<1) and $$\sim$ ((t<=0)|(t>=1)) both test if 0 < t < 1.
+% To demonstrate, consider defining and plotting the unit pulse p(t) = u(t) − u(t − 1), as shown in
+% Fig. 1.50:
+% Since anonymous functions can be constructed using other anonymous functions, we could
+% have used our previously defined unit step anonymous function to define p(t) as p = @(t)
+% u(t)-u(t-1);.
+p = @(t) 1.0.*((t>=0)&(t<1));
+t = (-1:0.01:2); plot(t,p(t));
+xlabel('t'); ylabel('p(t) = u(t)-u(t-1)');
+axis([-1 2 -.1 1.1]);
+%%
+% *Figure 1.50* p(t) = u(t)−u(t −1) over (−1 ≤ t ≤ 2).
+% 
+% For scalar operands, MATLAB also supports two short-circuit logical constructs. A
+% short-circuit logical AND is performed by using &&, and a short-circuit logical OR is performed by
+% using ||. Short-circuit logical operators are often more efficient than traditional logical operators
+% because they test the second portion of the expression only when necessary. That is, when scalar
+% expression A is found false in (A&&B), scalar expression B is not evaluated, since a false result
+% is already guaranteed. Similarly, scalar expression B is not evaluated when scalar expression A is
+% found true in (A||B), since a true result is already guaranteed.
+% 
+% *1.11-3 Visualizing Operations on the Independent Variable*
+%
+% Two operations on a function’s independent variable are commonly encountered: shifting and
+% scaling. Anonymous functions are well suited to investigate both operations.
+% Consider g(t) = f(t)u(t) = $$ e^{-t}$ cos(2πt)u(t), a causal version of f(t). MATLAB easily
+% multiplies anonymous functions. Thus, we create g(t) by multiplying our anonymous functions
+% for f(t) and $$ u(t).^Q$
+g = @(t) f(t).*u(t);
+%%
+% A combined shifting and scaling operation is represented by g(at + b), where a and b are
+% arbitrary real constants. As an example, consider plotting g(2t +1) over (−2 ≤ t ≤ 2). With a = 2,
+% the function is compressed by a factor of 2, resulting in twice the oscillations per unit t. Adding
+% the condition b > 0 shifts the waveform to the left. Given anonymous function g, an accurate plot
+% is nearly trivial to obtain.
+% Figure 1.51 confirms the expected waveform compression and left shift. As a final check, realize
+% that function g(·) turns on when the input argument is zero. Therefore, g(2t + 1) should turn on
+% when 2t +1 = 0 or at t = −0.5, a fact again confirmed by Fig. 1.51.
+t = (-2:0.01:2);
+plot(t,g(2*t+1)); xlabel('t'); ylabel('g(2t+1)'); grid;
+%%
+% *Figure 1.51* g(2t +1) over (−2 ≤ t ≤ 2)
+%
+% _______________________________________________________________________
+% 
+% $$ Q$ Although we define g in terms of f and u, the function g will not change if we later change either f or u
+% unless we subsequently redefine g as well.
+%
+% _______________________________________________________________________
+%
+% Next, consider plotting g(−t + 1) over (−2 ≤ t ≤ 2). Since a < 0, the waveform will be
+% reflected. Adding the condition b > 0 shifts the final waveform to the right.
+t = (-2:0.01:2);
+plot(t,g(-t+1)); xlabel('t'); ylabel('g(-t+1)'); grid;
+%%
+% *Figure 1.52* g(−t +1) over (−2 ≤ t ≤ 2).
+% Figure 1.52 confirms both the reflection and the right shift.
+% Up to this point, Figs. 1.51 and 1.52 could be reasonably sketched by hand. Consider plotting
+% the more complicated function h(t) = g(2t + 1) + g(−t + 1) over (−2 ≤ t ≤ 2) (Fig. 1.53); an
+% accurate hand sketch would be quite difficult. With MATLAB, the work is much less burdensome.
+t = (-2:0.01:2);
+plot(t,g(2*t+1)+g(-t+1)); xlabel('t'); ylabel('g(2*t+1)+g(-t+1)'); grid;
+%%
+% *Figure 1.53* h(t) = g(2t +1)+g(−t +1) over (−2 ≤ t ≤ 2)
+%
+% *1.11-4 Numerical Integration and Estimating Signal Energy*
+% Interesting signals often have nontrivial mathematical representations. Computing signal energy,
+% which involves integrating the square of these expressions, can be a daunting task. Fortunately,
+% many difficult integrals can be accurately estimated by means of numerical integration techniques.
+% Even if the integration appears simple, numerical integration provides a good way to verify
+% analytical results.
+% To start, consider the simple signal x(t) = $$ e^{-t}$(u(t)−u(t−1)). 
+% The energy of x(t) is expressed $$ E_x = \int_{-\infty}^{\infty} x(t)^{2}dt = \int_{0}^{1} e^{-2} dt$.
+% Integrating yields $$E_x$ = 0.5 (1− $$ e^{-2}$) $$\approx$ 0.4323. 
+% The energy integral can also be evaluated numerically. Figure 1.27 helps illustrate the simple method of
+% rectangular approximation: evaluate the integrand at points uniformly separated by $$\triangle$ t, multiply
+% each by $$\triangle$ t to compute rectangle areas, and then sum over all rectangles. First, we create function
+% x(t).
+x = @(t) exp(-t).*((t>=0)&(t<1));
+%%
+% With $$\triangle$ t = 0.01, a suitable time vector is created.
+t = (0:0.01:1);
+%%
+% The final result is computed by using the sum command.
+E_x = sum(x(t).*x(t)*0.01)
+%%
+% The result is not perfect, but at 1% relative error it is close. By reducing $$ \triangle$ t, the approximation is
+% improved. For example, $$ \triangle$ t = 0.001 yields $$ E_x$ = 0.4328, or 0.1% relative error.
+% Although simple to visualize, rectangular approximation is not the best numerical integration
+% technique. The MATLAB function quad implements a better numerical integration technique
+% called recursive adaptive Simpson quadrature. $$Q$ To operate, quad requires a function describing
+% the integrand, the lower limit of integration, and the upper limit of integration. Notice that no $$\triangle$ t
+% needs to be specified.
+% To use quad to estimate $$ E_x$, the integrand must first be described.
+x_squared = @(t) x(t).*x(t);
+%%
+% Estimating $$E_x$ immediately follows.
+E_x = quad(x_squared,0,1)
+%%
+% In this case, the relative error is −0.0026%.
+%
+% The same techniques can be used to estimate the energy of more complex signals. Consider
+% g(t), defined previously. Energy is expressed as $$ E_g =
+% \int_{0}^{\infty} e^{-2t}cos(2 \pi t)dt$.
+% A closed-form solution exists, but it takes some effort. MATLAB provides an answer more quickly
+g_squared = @(t) g(t).*g(t);
+%%
+%
+% _______________________________________________________________________
+% 
+% $$ Q$ A comprehensive treatment of numerical integration is outside the scope of this text. Details of this particular
+% method are not important for the current discussion; it is sufficient to say that it is better than the rectangular
+% approximation. 
+%
+% _______________________________________________________________________
+%
+% Although the upper limit of integration is infinity, the exponentially decaying envelope ensures
+% g(t) is effectively zero well before t = 100. Thus, an upper limit of t = 100 is used along with
+% $$ \triangle$ t = 0.001.
+t = (0:0.001:100);
+E_g = sum(g_squared(t)*0.001)
+%
+%% *2. Resuelve el problema 1.2-2 usando las herramientas del paso anterior.*
+u = @(t) 1.0.*(t>=0);
+g= @(t) -t.*(u(t+4)-u(t))+((t/2).*(u(t)-u(t-2)));
+t= -8:0.01:8;
+plot(t,g(t));
+title('x(t)')
+plano = gca;
+plano.XAxisLocation = "origin";
+plano.YAxisLocation = "origin";
+plano.Box = "off";
+grid on
+%%
+plot (t,g(t-4))
+title('x(t-4)')
+plano = gca;
+plano.XAxisLocation = "origin";
+plano.YAxisLocation = "origin";
+plano.Box = "off";
+grid on
+%%
+plot (t,g(t/1.5))
+title('x(t/1.5)')
+plano = gca;
+plano.XAxisLocation = "origin";
+plano.YAxisLocation = "origin";
+plano.Box = "off";
+grid on
+%%
+plot (t,g(-t))
+title('x(-t)')
+plano = gca;
+plano.XAxisLocation = "origin";
+plano.YAxisLocation = "origin";
+plano.Box = "off";
+grid on
+%%
+plot (t,g((2*t)-4))
+title('x(2t-4)')
+plano = gca;
+plano.XAxisLocation = "origin";
+plano.YAxisLocation = "origin";
+plano.Box = "off";
+grid on
+%%
+plot (t,g(2-t))
+title('x(2-t)')
+plano = gca;
+plano.XAxisLocation = "origin";
+plano.YAxisLocation = "origin";
+plano.Box = "off";
+grid on
+%
+%% *3. Resuelve el problema 1.11-1, los ejes deben mostrarse en el origen además de la edición de tu preferencia.*
+u = @(t) 1.0.*(t>=0);
+g = @(t) 0.5.*((2.^(-t).*u(t-pi)-(2.^(t).*u(-t-pi))));
+t=-5:0.01:5;
+plot(t,g(t));
+plano = gca;
+plano.XAxisLocation = "origin";
+plano.YAxisLocation = "origin";
+plano.Box = "off";
+xlabel('t');ylabel('g(t)');
+grid;
+%
+%% *4. Construye la grafica de $$x(t) = \sum_{k=1}^{10} cos(2\pi k t)$*
+%% Python: https://colab.research.google.com/drive/1hi_Q55Z7tGSBMxsj_cEfzWzfnoM5dBKR#scrollTo=ZFLZF7XzZctTa
+M = 250; 
+t = -2:4/(M-1):2;
+y = zeros(1,M); 
+N = 10;
+for k = 1:N
+ y = y+ cos(pi*k*t); 
+end
+plot(t,y)
+plano = gca;
+plano.XAxisLocation = "origin";
+plano.YAxisLocation = "origin";
+plano.Box = "off";
+a= title('x(t)');
+set(a,'fontsize',14);
+a= xlabel('x');
+set(a,'fontsize',20);
+a = ylabel('y');
+set(a,'fontsize',20);
+a = zlabel('z');
+set(a,'fontsize',20);
+grid;
+%%
+% Gráfica Python
+%%
+% 
+% <<mifigura.PNG>>
+% 
+
+%% *5. Resuelve el problema 1.11-3, agrega como inciso (e) la gráfica de $x(t)$ para $t\in[-10,10]$*
+% *1.11-3*
+u = @(t) 1.0.*(t>=0);
+x= @(t) exp(t.*(1+(i*2*pi)).*u(-t));
+y= @(t) real(2.*x((-5-t)./2));
+%%
+% *a)*
+a=0.5;
+t=-10:0.01:10;
+plot(real(x(t)),imag(x(t.*a)));
+title('x(t) con a=0.5');
+xlabel('Re');ylabel('Im');
+a=1;
+plot(real(x(t)),imag(x(t.*a)));
+title('x(t) con a=1');
+xlabel('Re');ylabel('Im');
+a=2;
+plot(real(x(t)),imag(x(t.*a)));
+title('x(t) con a=2');
+xlabel('Re');ylabel('Im');
+%%
+% The shape of the figure changes a lot when you modiffy
+% the scale of a), perhabs, the scale in the factor a) is
+% very important in this case.
+%
+% *b)*???
+plot(t, real(y(t)));
+xlabel('t');ylabel('y(t)');
+##### SOURCE END #####
+--></body></html>
